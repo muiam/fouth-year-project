@@ -120,7 +120,7 @@ def projectdetails(request, pk):
         else:
             try:
                     request_obj.save()
-                    server='http://127.0.0.1:8000/payment/'+paykey
+                    server='https://fouth-year-project-production.up.railway.app/'+paykey
 
                     #send mail to the requester and save to database
                     subject = 'Approval of purchase'
