@@ -180,6 +180,9 @@
             toastr.options.closeMethod = 'slideUp';
         }else{
             $.ajax({
+                headers: {
+                'X-CSRFToken': token
+            },    
             type:'POST', 
             url: '/accountlogin',
 
