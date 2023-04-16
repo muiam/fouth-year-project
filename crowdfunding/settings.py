@@ -54,6 +54,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'crowdfunding.urls'
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://fouth-year-project-production.up.railway.app",
+]
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
