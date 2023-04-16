@@ -1,0 +1,111 @@
+<!--Start Header-->
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+{% load static  %}
+{% if request.user.is_authenticated %}
+<!-- {% include 'head.html' %} -->
+<header class="header-section">
+    <div class="header">
+        <div class="header-bottom-area">
+            <div class="container">
+                <div class="header-menu-content">
+                    <nav class="navbar navbar-expand-lg p-0">
+                        <a class="site-logo site-title" href="index-2.html"><img src="{% static 'assets/images/logo/logo.png ' %}" alt="site-logo"></a>
+                        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="fas fa-bars"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav main-menu ms-auto me-auto">
+                                <li><a href="index-2.html" class="active">Home</a></li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="#0">Campaign</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="campaign.html">Campaign</a></li>
+                                        <li><a href="campaign-details.html">Campaign Details</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#0">Pages</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="app.html">Download App</a></li>
+                                        <li><a href="gallery.html">Gallery</a></li>
+                                        <li><a href="faq.html">FAQ</a></li>
+                                        <li><a href="privacy.html">Privacy Policy</a></li>
+                                        <li><a href="register.html">Register</a></li>
+                                        <li><a href="login.html">Login</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#0">Events</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="event.html">Events</a></li>
+                                        <li><a href="event-details.html">Event Details</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                            <div class="header-action">
+                                <a href="{% url 'logout' %}" class="btn--base">Logout</a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+{% else %}
+
+<header class="header-section">
+    <div class="header">
+        <div class="header-bottom-area">
+            <div class="container">
+                <div class="header-menu-content">
+                    <nav class="navbar navbar-expand-lg p-0">
+                        <a class="site-logo site-title" href="index-2.html"><img src="{% static 'assets/images/logo/logo.png ' %}" alt="site-logo"></a>
+                        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="fas fa-bars"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav main-menu ms-auto me-auto">
+                                <li><a href="index-2.html" class="active">Home</a></li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="#0">Campaign</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="campaign.html">Campaign</a></li>
+                                        <li><a href="campaign-details.html">Campaign Details</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#0">Pages</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="app.html">Download App</a></li>
+                                        <li><a href="gallery.html">Gallery</a></li>
+                                        <li><a href="faq.html">FAQ</a></li>
+                                        <li><a href="privacy.html">Privacy Policy</a></li>
+                                        <li><a href="register.html">Register</a></li>
+                                        <li><a href="login.html">Login</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#0">Events</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="event.html">Events</a></li>
+                                        <li><a href="event-details.html">Event Details</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                            <div class="header-action">
+                                <a href="{% url 'login' %}" class="btn--base">Join To Invest</a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endif %}
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    End Header
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->

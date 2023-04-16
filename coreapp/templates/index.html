@@ -1,0 +1,534 @@
+
+{% extends 'main.html' %}
+{% block content %}
+{%  load static %}
+
+<body>
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Start Preloader
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<div class="preloader">
+    <div class="loader">
+        <svg>
+            <defs>
+                <filter id="goo">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur" />
+                    <feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 5 -2"
+                        result="gooey" />
+                    <feComposite in="SourceGraphic" in2="gooey" operator="atop" />
+                </filter>
+            </defs>
+        </svg>
+    </div>
+</div>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    End Preloader
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Start Custom Cursor
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    End Custom Cursor
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Start Sroll-to-top
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<div class="progress-wrap">
+    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+      <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+    </svg>
+</div>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Start Sroll-to-top
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~starrtheader~~~~~~~~~~-->
+{% include 'header.html' %}
+
+<!--~~~~~~~~~~~~~~end header~~~~~~~~~~~~~~~~~~~~~~~~~
+    Start Banner
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<section class="banner-section">
+    <div class="banner-bg">
+        <img src="assets/images/banner/banner-img.png" alt="banner">
+    </div>
+    <div class="banner-shape">
+        <img src="assets/images/map.jpg" alt="banner-shape">
+    </div>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-xl-7 col-lg-7 col-md-12">
+                <div class="banner-content">
+                    <h1 class="title">We help the kids to grow up in the right way</h1>
+                    <p>The tone and elucidates the of system the universal village pink like so to her a try eye.  of notice his a associates.</p>
+                    <div class="banner-btn">
+                        <a href="campaign-details.html" class="btn--base"><i class="las la-heart"></i> Donate Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    End Banner
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Start About
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<section class="about-section ptb-120">
+    <div class="about-shape">
+        <img src="assets/images/about/right-shape.png" alt="shape">
+    </div>
+    <div class="container">
+        <div class="row justify-content-center align-items-center mb-30-none">
+            <div class="col-xl-6 col-lg-6 mb-30">
+                <div class="about-thumb">
+                    <img src="assets/images/about/about-img.png" alt="about">
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 mb-30">
+                <div class="about-content">
+                    <div class="sub-title">About Foundation</div>
+                    <h2 class="title">What Have We Done With Your Help</h2>
+                    <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi accumsan id imperdiet Curabitur arcu erat.</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit illo, nulla numquam quasi neque repudiandae corporis mollitia excepturi recusandae ex?</p>
+                    <div class="about-btn">
+                        <a href="about.html" class="btn--base">Read More...</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    End About
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Start app
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<section class="app-section bg--gray ptb-120">
+    <div class="app-element-one">
+        <img src="assets/images/app/element-1.jpg" style="-webkit-mask-box-image: url('assets/images/app/maskshape.png'); mask: url('assets/images/app/maskshape.png');" alt="app">
+    </div>
+    <div class="app-element-two">
+        <img src="assets/images/app/phone.png" alt="phone">
+    </div>
+    <div class="container">
+        <div class="row justify-content-end">
+            <div class="col-xxl-6 col-xl-12 col-lg-12">
+                <div class="app-content">
+                    <span class="sub-title">Download Our App</span>
+                    <h2 class="title">App is available for free on app store</h2>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore magni, est ut magnam aspernatur recusandae sed aliquam.</p>
+                    <p>Ipsum et distinctio corporis! Veritatis iste deleniti fugit necessitatibus, culpa, nulla possimus aspernatur temporibus corrupti ex sapiente. Ab porro explicabo distinctio quam.</p>
+                    <div class="app-btn">
+                        <a href="#0"><img src="assets/images/app/google-play.png" alt="app"></a>
+                        <a href="#0"><img src="assets/images/app/app-store.svg" alt="app"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    End app
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+
+{% include 'campaigns.html' %}
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Start Gallery
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<section class="gallery-section pt-120">
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="gallery-item">
+                    <div class="thumb">
+                        <img src="assets/images/gallery/gallery-1.jpg" alt="gallery">
+                        <div class="gallery-shape">
+                            <img src="assets/images/gallery/gallery-shape.png" alt="shape">
+                        </div>
+                        <div class="content">
+                            <h2 class="title">Homeless People In Myanmar</h2>
+                            <div class="gallery-btn">
+                                <a href="campaign-details.html">#Build Home</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="gallery-item">
+                    <div class="thumb">
+                        <img src="assets/images/gallery/gallery-2.jpg" alt="gallery">
+                        <div class="gallery-shape">
+                            <img src="assets/images/gallery/gallery-shape.png" alt="shape">
+                        </div>
+                        <div class="content">
+                            <h2 class="title">Homeless People In Africa</h2>
+                            <div class="gallery-btn">
+                                <a href="campaign-details.html">#Donate</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="gallery-item">
+                    <div class="thumb">
+                        <img src="assets/images/gallery/gallery-3.jpg" alt="gallery">
+                        <div class="gallery-shape">
+                            <img src="assets/images/gallery/gallery-shape.png" alt="shape">
+                        </div>
+                        <div class="content">
+                            <h2 class="title">Foodless People In Sudan</h2>
+                            <div class="gallery-btn">
+                                <a href="campaign-details.html">#Grow Grain</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    End Gallery
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Start Testimonial
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<section class="testimonial-section pt-120">
+    <img src="assets/images/client/client-shape-1.svg" alt="shape" class="testimonial-shape-one">
+    <img src="assets/images/client/client-shape-2.svg" alt="shape" class="testimonial-shape-two">
+    <div class="mask-shape">
+        <img src="assets/images/client/client-shape-3.jpg" style="-webkit-mask-box-image: url('assets/images/client/client-shape-5.svg'); mask: url('assets/images/client/client-shape-5.svg');" alt="mask-shape" class="testimonial-shape-three">
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-7 col-lg-7 text-center">
+                <div class="section-header">
+                    <span class="section-sub-title">Testimonial</span>
+                    <h2 class="section-title">What People Say About <span>Our Foundation</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-area">
+            <ul class="testimonial-box-image">
+                <li>
+                    <img src="assets/images/client/client-small-1.png" alt="client">
+                </li>
+                <li>
+                    <img src="assets/images/client/client-small-2.png" alt="client">
+                </li>
+                <li>
+                    <img src="assets/images/client/client-small-3.png" alt="client">
+                </li>
+                <li>
+                    <img src="assets/images/client/client-small-4.png" alt="client">
+                </li>
+            </ul>
+            <div class="testimonial-slider">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="testimonial-wrapper">
+                            <div class="thumb">
+                                <img src="assets/images/client/client-1.jpg" alt="client">
+                            </div>
+                            <div class="content">
+                                <div class="client-quote">
+                                    <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21.75 10.9951H18V7.99512C18 6.35449 19.3125 4.99512 21 4.99512H21.375C21.9844 4.99512 22.5 4.52637 22.5 3.87012V1.62012C22.5 1.01074 21.9844 0.495117 21.375 0.495117H21C16.8281 0.495117 13.5 3.87012 13.5 7.99512V19.2451C13.5 20.5107 14.4844 21.4951 15.75 21.4951H21.75C22.9688 21.4951 24 20.5107 24 19.2451V13.2451C24 12.0264 22.9688 10.9951 21.75 10.9951ZM8.25 10.9951H4.5V7.99512C4.5 6.35449 5.8125 4.99512 7.5 4.99512H7.875C8.48438 4.99512 9 4.52637 9 3.87012V1.62012C9 1.01074 8.48438 0.495117 7.875 0.495117H7.5C3.32812 0.495117 0 3.87012 0 7.99512V19.2451C0 20.5107 0.984375 21.4951 2.25 21.4951H8.25C9.46875 21.4951 10.5 20.5107 10.5 19.2451V13.2451C10.5 12.0264 9.46875 10.9951 8.25 10.9951Z" fill="#EB9309"></path>
+                                    </svg>
+                                </div>
+                                <div class="client-quote-two">
+                                    <svg width="300" height="200" viewBox="0 0 300 263" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M271.875 131.5H225V94C225 73.4922 241.406 56.5 262.5 56.5H267.188C274.805 56.5 281.25 50.6406 281.25 42.4375V14.3125C281.25 6.69531 274.805 0.25 267.188 0.25H262.5C210.352 0.25 168.75 42.4375 168.75 94V234.625C168.75 250.445 181.055 262.75 196.875 262.75H271.875C287.109 262.75 300 250.445 300 234.625V159.625C300 144.391 287.109 131.5 271.875 131.5ZM103.125 131.5H56.25V94C56.25 73.4922 72.6562 56.5 93.75 56.5H98.4375C106.055 56.5 112.5 50.6406 112.5 42.4375V14.3125C112.5 6.69531 106.055 0.25 98.4375 0.25H93.75C41.6016 0.25 0 42.4375 0 94V234.625C0 250.445 12.3047 262.75 28.125 262.75H103.125C118.359 262.75 131.25 250.445 131.25 234.625V159.625C131.25 144.391 118.359 131.5 103.125 131.5Z" fill="#F8F7F7"></path>
+                                    </svg>
+                                </div>
+                                <p>“ I ah4preciate your amazing services and professional staff for all your hard work and creative thinking! It was fun, and I hope to work with you again soon “</p>
+                                <h3 class="title">Rasalina Willams</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-wrapper">
+                            <div class="thumb">
+                                <img src="assets/images/client/client-2.jpg" alt="client">
+                            </div>
+                            <div class="content">
+                                <div class="client-quote">
+                                    <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21.75 10.9951H18V7.99512C18 6.35449 19.3125 4.99512 21 4.99512H21.375C21.9844 4.99512 22.5 4.52637 22.5 3.87012V1.62012C22.5 1.01074 21.9844 0.495117 21.375 0.495117H21C16.8281 0.495117 13.5 3.87012 13.5 7.99512V19.2451C13.5 20.5107 14.4844 21.4951 15.75 21.4951H21.75C22.9688 21.4951 24 20.5107 24 19.2451V13.2451C24 12.0264 22.9688 10.9951 21.75 10.9951ZM8.25 10.9951H4.5V7.99512C4.5 6.35449 5.8125 4.99512 7.5 4.99512H7.875C8.48438 4.99512 9 4.52637 9 3.87012V1.62012C9 1.01074 8.48438 0.495117 7.875 0.495117H7.5C3.32812 0.495117 0 3.87012 0 7.99512V19.2451C0 20.5107 0.984375 21.4951 2.25 21.4951H8.25C9.46875 21.4951 10.5 20.5107 10.5 19.2451V13.2451C10.5 12.0264 9.46875 10.9951 8.25 10.9951Z" fill="#EB9309"></path>
+                                    </svg>
+                                </div>
+                                <div class="client-quote-two">
+                                    <svg width="300" height="200" viewBox="0 0 300 263" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M271.875 131.5H225V94C225 73.4922 241.406 56.5 262.5 56.5H267.188C274.805 56.5 281.25 50.6406 281.25 42.4375V14.3125C281.25 6.69531 274.805 0.25 267.188 0.25H262.5C210.352 0.25 168.75 42.4375 168.75 94V234.625C168.75 250.445 181.055 262.75 196.875 262.75H271.875C287.109 262.75 300 250.445 300 234.625V159.625C300 144.391 287.109 131.5 271.875 131.5ZM103.125 131.5H56.25V94C56.25 73.4922 72.6562 56.5 93.75 56.5H98.4375C106.055 56.5 112.5 50.6406 112.5 42.4375V14.3125C112.5 6.69531 106.055 0.25 98.4375 0.25H93.75C41.6016 0.25 0 42.4375 0 94V234.625C0 250.445 12.3047 262.75 28.125 262.75H103.125C118.359 262.75 131.25 250.445 131.25 234.625V159.625C131.25 144.391 118.359 131.5 103.125 131.5Z" fill="#F8F7F7"></path>
+                                    </svg>
+                                </div>
+                                <p>“ I ah4preciate your amazing services and professional staff for all your hard work and creative thinking! It was fun, and I hope to work with you again soon “</p>
+                                <h3 class="title">Rasalina Willams</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-wrapper">
+                            <div class="thumb">
+                                <img src="assets/images/client/client-3.jpg" alt="client">
+                            </div>
+                            <div class="content">
+                                <div class="client-quote">
+                                    <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21.75 10.9951H18V7.99512C18 6.35449 19.3125 4.99512 21 4.99512H21.375C21.9844 4.99512 22.5 4.52637 22.5 3.87012V1.62012C22.5 1.01074 21.9844 0.495117 21.375 0.495117H21C16.8281 0.495117 13.5 3.87012 13.5 7.99512V19.2451C13.5 20.5107 14.4844 21.4951 15.75 21.4951H21.75C22.9688 21.4951 24 20.5107 24 19.2451V13.2451C24 12.0264 22.9688 10.9951 21.75 10.9951ZM8.25 10.9951H4.5V7.99512C4.5 6.35449 5.8125 4.99512 7.5 4.99512H7.875C8.48438 4.99512 9 4.52637 9 3.87012V1.62012C9 1.01074 8.48438 0.495117 7.875 0.495117H7.5C3.32812 0.495117 0 3.87012 0 7.99512V19.2451C0 20.5107 0.984375 21.4951 2.25 21.4951H8.25C9.46875 21.4951 10.5 20.5107 10.5 19.2451V13.2451C10.5 12.0264 9.46875 10.9951 8.25 10.9951Z" fill="#EB9309"></path>
+                                    </svg>
+                                </div>
+                                <div class="client-quote-two">
+                                    <svg width="300" height="200" viewBox="0 0 300 263" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M271.875 131.5H225V94C225 73.4922 241.406 56.5 262.5 56.5H267.188C274.805 56.5 281.25 50.6406 281.25 42.4375V14.3125C281.25 6.69531 274.805 0.25 267.188 0.25H262.5C210.352 0.25 168.75 42.4375 168.75 94V234.625C168.75 250.445 181.055 262.75 196.875 262.75H271.875C287.109 262.75 300 250.445 300 234.625V159.625C300 144.391 287.109 131.5 271.875 131.5ZM103.125 131.5H56.25V94C56.25 73.4922 72.6562 56.5 93.75 56.5H98.4375C106.055 56.5 112.5 50.6406 112.5 42.4375V14.3125C112.5 6.69531 106.055 0.25 98.4375 0.25H93.75C41.6016 0.25 0 42.4375 0 94V234.625C0 250.445 12.3047 262.75 28.125 262.75H103.125C118.359 262.75 131.25 250.445 131.25 234.625V159.625C131.25 144.391 118.359 131.5 103.125 131.5Z" fill="#F8F7F7"></path>
+                                    </svg>
+                                </div>
+                                <p>“ I ah4preciate your amazing services and professional staff for all your hard work and creative thinking! It was fun, and I hope to work with you again soon “</p>
+                                <h3 class="title">Rasalina Willams</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    End Testimonial
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Start Video
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<section class="video-section pt-120">
+    <div class="video-shape">
+        <img src="assets/images/map.jpg" alt="shape">
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-12 text-center">
+                <div class="video-content">
+                    <h2 class="title"><span class="number">250</span> <span class="text">MLN</span></h2>
+                    <h3 class="sub-title">People Live with a disability</h3>
+                    <div class="video-area">
+                        <a class="video-icon" data-rel="lightcase:myCollection" href="https://www.youtube.com/embed/2iTZipttfJM">
+                            <img src="assets/images/play-button.png" alt="play">
+                        </a>
+                        <span>Watch Video</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    End Video
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Start Blog
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<section class="blog-section pt-120">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-12 text-center">
+                <div class="section-header">
+                    <span class="section-sub-title">Events</span>
+                    <h2 class="section-title">See Our <span>Latest Events</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-30-none">
+            <div class="col-xl-6 col-lg-6 col-md-6 mb-30">
+                <div class="blog-item">
+                    <div class="blog-thumb">
+                        <a href="event-details.html"><img src="assets/images/blog/blog1.jpg" alt="blog"></a>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">
+                            <h6 class="title">10 Aug</h6>
+                            <span class="sub-title">2022</span>
+                        </div>
+                        <span class="category">Health</span>
+                        <h3 class="title"><a href="event-details.html">The right guideline to donate for homeless people</a></h3>
+                        <p>There are many variations of passages of Lorem Ipsum, but the majority have suffered alteration in some form, by injected humour, or randomised words</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 mb-30">
+                <div class="blog-item">
+                    <div class="blog-thumb">
+                        <a href="event-details.html"><img src="assets/images/blog/blog2.jpg" alt="blog"></a>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">
+                            <h6 class="title">22 Jan</h6>
+                            <span class="sub-title">2022</span>
+                        </div>
+                        <span class="category">Food</span>
+                        <h3 class="title"><a href="event-details.html">What you need to know about the food crisis</a></h3>
+                        <p>There are many variations of passages of Lorem Ipsum, but the majority have suffered alteration in some form, by injected humour, or randomised words</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    End Blog
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Start Brand
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<section class="brand-section ptb-120">
+    <div class="container">
+        <div class="brand-header">
+            <span class="brand-header-line"></span>
+            <h3 class="brand-header-title">“ Top Donner Partner ”</h3>
+            <span class="brand-header-line"></span>
+        </div>
+        <div class="brand-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="brand-item">
+                        <img src="assets/images/brand/brand-1.png" alt="brand">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="brand-item">
+                        <img src="assets/images/brand/brand-2.png" alt="brand">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="brand-item">
+                        <img src="assets/images/brand/brand-3.png" alt="brand">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="brand-item">
+                        <img src="assets/images/brand/brand-4.png" alt="brand">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="brand-item">
+                        <img src="assets/images/brand/brand-5.png" alt="brand">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="brand-item">
+                        <img src="assets/images/brand/brand-6.png" alt="brand">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    End Brand
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Start Footer
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<footer class="footer-section section--bg">
+    <div class="footer-shape">
+        <img src="assets/images/footer/footer-shape-2.png" alt="shape">
+    </div>
+    <div class="container">
+        <div class="row mb-30-none">
+            <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
+                <div class="footer-widget">
+                    <div class="footer-logo">
+                        <a class="site-logo site-title" href="index-2.html"><img src="assets/images/logo/logo-white.png" alt="site-logo"></a>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur adipisci impedit est eius. Non eius ex ea Non eius ex ea Consequatur</p>
+                    <div class="social-area">
+                        <span>Follow Us:</span>
+                        <ul class="footer-social">
+                            <li><a href="#0"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#0"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#0"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="#0"><i class="fab fa-youtube"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-6 mb-30">
+                <div class="footer-widget">
+                    <h3 class="title">Support Us</h3>
+                    <ul class="footer-list">
+                        <li><a href="#0">Donate Now <i class="las la-arrow-right"></i></a></li>
+                        <li><a href="#0">Store <i class="las la-arrow-right"></i></a></li>
+                        <li><a href="#0">Reports <i class="las la-arrow-right"></i></a></li>
+                        <li><a href="#0">Press Releases <i class="las la-arrow-right"></i></a></li>
+                        <li><a href="#0">Privacy & Policy <i class="las la-arrow-right"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-4 col-md-6 mb-30">
+                <div class="footer-widget">
+                    <h3 class="title">Quick Links</h3>
+                    <ul class="footer-list">
+                        <li><a href="#0">Home <i class="las la-arrow-right"></i></a></li>
+                        <li><a href="#0">About Us <i class="las la-arrow-right"></i></a></li>
+                        <li><a href="#0">Contact Us <i class="las la-arrow-right"></i></a></li>
+                        <li><a href="#0">Donation <i class="las la-arrow-right"></i></a></li>
+                        <li><a href="#0">Join Volentter <i class="las la-arrow-right"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
+                <div class="footer-widget">
+                    <h3 class="title">Newsletter</h3>
+                    <p>Subscribe to us get updated news & tips in your inbox</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="form--control" placeholder="Your email...">
+                        <button type="submit" class="btn--base">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-area">
+            <p>Copyright © 2022 <span>Xfund.</span> All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    End Footer
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+
+
+
+{% include 'footer.html' %}
+
+</body>
+
+</html>
+{% endblock content %}

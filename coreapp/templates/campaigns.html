@@ -1,0 +1,67 @@
+{% load static %}
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Start Campaign
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<section class="campaign-section pt-120">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-12 text-center">
+                <div class="section-header">
+                    <span class="section-sub-title">Campaign</span>
+                    <h2 class="section-title">Total Active <span>Campaigns-- {{campaign_list.count}}</span></h2>
+                </div>
+            </div>
+        </div>
+    
+        <div class="row justify-content-center mb-30-none">
+            {% for campaign in campaign_list %}
+            <div class="col-xl-4 col-lg-6 col-md-6 mb-30">
+                <div class="campaign-item">
+                    <div class="campaign-thumb">
+                        <a href="campaign-details.html">
+                            <img src="assets/images/campaign/campaign-1.jpg" alt="campaign">
+                            <div class="campaign-category">
+                                <span>#{{ campaign.category }}</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="campaign-content">
+                        <h3 class="title"><a href="{% url 'project' campaign.id %}">{{campaign.name}}</a></h3>
+                        <p>{{campaign.description|truncatewords:50}}</p>
+                        <div class="skill-bar">
+                            <div class="progressbar" data-perc="{{campaign.total_contributions}}">
+                                <div class="bar"></div>
+                               
+                                <span class="label">{{campaign.total_contributions}}</span>
+                            </div>
+                        </div>
+                        <div class="campaign-footer-area">
+                            <div class="left">
+                                <span class="sub-title">Our Goal</span>
+                                <h5 class="title">$ {{campaign.target}}</h5>
+                            </div>
+                            <div class="center">
+                                <span class="sub-title">Raised</span>
+                                <h5 class="title">$ {{ campaign.total_contributions }}</h5>
+                            </div>
+                            <div class="right">
+                                <span class="sub-title">To Go</span>
+                                <h5 class="title">$34,000</h5>
+                            </div>
+                        </div>
+                        <div class="campaign-btn">
+                            <a href="{% url 'project' campaign.id %}" class="btn--base">Back Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+            
+        </div>
+
+    </div>
+</section>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    End Campaign
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->

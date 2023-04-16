@@ -1,0 +1,214 @@
+
+{% include 'head.html' %}
+{% load static %}
+<body>
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Start Preloader
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<div class="preloader">
+    <div class="loader">
+        <svg>
+            <defs>
+                <filter id="goo">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur" />
+                    <feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 5 -2"
+                        result="gooey" />
+                    <feComposite in="SourceGraphic" in2="gooey" operator="atop" />
+                </filter>
+            </defs>
+        </svg>
+    </div>
+</div>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    End Preloader
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Start Custom Cursor
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    End Custom Cursor
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Start Account
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<section class="account-section bg_img" data-background="{% static 'assets/images/banner/login.png' %}">
+    <div class="account-shape">
+        <img src="{% static 'assets/images/banner/bottom-shape.png' %}" alt="shape">
+    </div>
+    <div class="right float-end">
+        <div class="account-header text-center">
+            <a class="site-logo" href="{% url 'home' %}"><img src="{% static 'assets/images/logo/logo.png' %}" alt="logo"></a>
+        </div>
+        <div class="account-middle">
+            <h6 id="h6" class="text-success text-center"></h6>
+            <h5 id="h5" class="text-danger text-center"></h5>
+              <br>
+            <div class="account-form-area">
+
+                <h3 class="title">Logal Notice</h3>
+                <p>Please input your email and password and login to your account to get access to your dashboard.</p>
+                
+                <!--Search validation form-->
+
+                <form class="account-form" id="SearchForm" >
+                    <div class="row ml-b-20">
+                        {% csrf_token %}
+                        <div class="col-lg-12 form-group">
+                            <input type="text" class="form-control form--control" id="username" placeholder="Your Email">
+                        </div>
+    
+                        <div class="col-lg-12 form-group text-center">
+                            <button type="submit" id="submit" class="btn--base w-100" >Validate</button>
+                        </div>
+
+                        <div class="col-lg-12 text-center">
+                            <div class="account-item mt-10">
+                                <label>Don't Have An Account? <a href="register.html" class="text--base">Register
+                                        Now</a></label>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </form>
+                <!--search ends-->
+                
+                <form class="account-form" id="loginForm" hidden="true">
+                    <div class="row ml-b-20">
+                        {% csrf_token %}
+                        <div class="col-lg-12 form-group">
+                            <input type="text" class="form-control form--control" id="usernamelogin" name="text" placeholder="Username">
+                        </div>
+                        <div class="col-lg-12 form-group">
+                            <input type="password" class="form-control form--control" id="password" name="password" placeholder="Password">
+                        </div>
+                        <div class="col-lg-12 form-group">
+                            <div class="forgot-item">
+                                <label><a href="#0" class="text--base">Forgot Password?</a></label>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 form-group text-center">
+                            <button type="submit" id="submitlogin" class="btn--base w-100">Login Now</button>
+                        </div>
+                        <div class="col-lg-12 text-center">
+                            <div class="account-item mt-10">
+                                <label>Don't Have An Account? <a href="register.html" class="text--base">Register
+                                        Now</a></label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    End Account
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+
+
+{% include 'footer.html' %}
+
+<script>
+    
+    $(document).on("submit",'#SearchForm', function (e){
+        e.preventDefault();
+        if ($('#username').val() == '') {
+
+            toastr.error("You must provide a valid email");
+            toastr.options.showMethod = 'slideDown';
+            toastr.options.closeMethod = 'slideUp';
+
+        }else{
+            $.ajax({
+            type:'POST', 
+            url: '/checkmail',
+             
+            data :{
+                username:$('#username').val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            },
+            dataType: 'json',
+
+            success: function (data) {
+            if (data.is_taken) {
+
+                username=data['username']
+                toastr.success("sasa "+username +" proceed to login");
+                toastr.options.showMethod = 'slideDown';
+                toastr.options.closeMethod = 'slideUp';
+                $('#SearchForm').hide();
+                $('#loginForm').removeAttr('hidden');
+                $('#usernamelogin').val(username);
+                $('#usernamelogin').prop('disabled', true);
+                
+               
+
+            }else{
+                
+                toastr.error("invalid email address");
+                toastr.options.showMethod = 'slideDown';
+                toastr.options.closeMethod = 'slideUp';
+                
+            }
+            
+             }
+         });
+        }  
+    });
+</script>
+
+<script>
+  $(document).on("submit",'#loginForm', function (e){  
+    e.preventDefault();
+    username= $('#usernamelogin').val()
+    password= $('#password').val()
+    token=$('input[name=csrfmiddlewaretoken]').val()
+    console.log(username,password,token);
+
+    if ($('#password').val() == '') {
+            toastr.error("Enter your password");
+            toastr.options.showMethod = 'slideDown';
+            toastr.options.closeMethod = 'slideUp';
+        }else{
+            $.ajax({
+            type:'POST', 
+            url: '/accountlogin',
+
+            data :{
+                username:$('#usernamelogin').val(),
+                password:$('#password').val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            },
+            dataType: 'json',
+            success: function (data) {
+            if (data['success']) {
+                toastr.success("login successful");
+                toastr.options.showMethod = 'slideDown';
+                toastr.options.closeMethod = 'slideUp';
+                window.location.href = "{% url 'home' %}"
+
+            }else{
+                toastr.error("You entered a wrong password");
+                toastr.options.showMethod = 'slideDown';
+                toastr.options.closeMethod = 'slideUp';
+
+            }
+        }
+
+            });
+        }       
+    
+  });
+</script>
+
+</body>
+</html>
