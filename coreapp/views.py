@@ -160,8 +160,8 @@ def projectdetails(request, pk):
  
      
 
-    if request.is_ajax():
-    # if request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
+    # if request.is_ajax():
+    if request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         project = Campaign.objects.select_related('owner').get(id=pk)
         contributions = project.contributions_set.all()
             #projectpercentage=(project.total_contributions/project.target)*100
