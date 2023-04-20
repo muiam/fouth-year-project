@@ -190,7 +190,7 @@ def projectdetails(request, pk):
     return render(request,'project.html')
 
 def payment(request,pk):
-   paymentdetails=Requests.objects.filter(paykey=pk)
+   paymentdetails=Requests.objects.get(paykey=pk)
    context={'paymentdetails':paymentdetails}  
    return render(request,'payment.html',context)
 
