@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import BaseUserManager
+from datetime import datetime
 
 
 # Create your models here.
@@ -11,6 +12,7 @@ class User(AbstractUser):
     othername=models.CharField(null=True,max_length=200)
     phone=models.CharField(null=True,max_length=20)
     email=models.EmailField(null=True, unique=True)
+    type=models.CharField(null=True,blank=True, default="investor", max_length=20)
     #avatar
 
     USERNAME_FIELD = 'email'
@@ -51,6 +53,8 @@ class Campaign(models.Model):
     updated=models.DateTimeField(auto_now=True)
     created=models.DateTimeField(auto_now_add=True)
     name=models.CharField(max_length=200)
+    roi=models.CharField(max_length=20,null=True,blank=True, default='3')
+    period=models.CharField(max_length=200,default='annually')
 
     class Meta:
         ordering=['-updated','-created']
@@ -58,16 +62,27 @@ class Campaign(models.Model):
 
     def __str__(self):
         
-        return self.name
+        return str(self.id)
         
     #class Reviews(models.Model):
 
 class Contributions(models.Model):
     contributor=models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     amount=models.CharField(max_length=10, blank=True, null=True)
-    invest_campaign=models.ForeignKey(Campaign, on_delete=models.SET_NULL, null=True)
+    invest_campaign=models.ForeignKey(Campaign, on_delete=models.SET_NULL, null=True,to_field='id')
     method=models.TextField(null=True, blank=True)
     status=models.TextField(null=True,blank=True,default="pending")
+    expected=models.TextField(null=False,blank=False,default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    paidout = models.BooleanField(null=False, blank=False, default=False)
+
+
+   
+
+    
+
+    
+
 
 
     def __str__(self):

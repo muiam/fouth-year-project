@@ -23,6 +23,7 @@ from datetime import datetime
 import requests
 
 
+
 # Create your views here.
 
 def homepage(request):
@@ -30,13 +31,26 @@ def homepage(request):
         percentage_contributions=ExpressionWrapper(
             F('total_contributions') / F('target') * 100,
             output_field=FloatField()
-        )
-    )
+        ))
+    
 
+    #statistics for logged in user
+    user=request.user
+    if user.is_authenticated:
+        total_investment = Contributions.objects.filter(contributor=user)
+        total_sum = 0
+        for investment in total_investment:
+            amount = investment.amount.replace(',', '') # remove commas
+            total_sum += float(amount)
+        total_count=total_investment.count()  
 
-    context={'campaign_list': campaign_list}
-
-    return render(request,'index.html', context)
+        completerequests=Requests.objects.filter(requester=user, status='used')
+        completetotal=completerequests.count()                 
+        context={'campaign_list': campaign_list,'total':total_sum,'count':total_count,'completerequests':completetotal}
+    else:
+        context = {'campaign_list': campaign_list}
+    
+    return render(request,'index.html',context)
 
 
 def login(request):
@@ -118,7 +132,8 @@ def projectdetails(request, pk):
              
             
         else:
-            try:
+            try:    
+                    print(amount,gateway,paykey,project,requester)
                     request_obj.save()
                     server='https://fouth-year-project-production.up.railway.app/payment/'+paykey
 
@@ -145,8 +160,8 @@ def projectdetails(request, pk):
  
      
 
-    #if request.is_ajax():
-    if request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
+    if request.is_ajax():
+    # if request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         project = Campaign.objects.select_related('owner').get(id=pk)
         contributions = project.contributions_set.all()
             #projectpercentage=(project.total_contributions/project.target)*100
@@ -202,6 +217,14 @@ def pay(request):
         Contributions_obj.amount=amount
         Contributions_obj.method=gateway
         request_status = Requests.objects.get(paykey=paykey)
+
+        campaign_details=Campaign.objects.get(id=project)
+        expected=float(amount)*0.01*float(campaign_details.roi)
+        print("expected" +str(expected))
+
+        Contributions_obj.expected=expected
+
+        
         print(request_status.status)
         try:
             consumer_secret = "fgO9yRGp0GPppQ9W"
@@ -248,7 +271,7 @@ def pay(request):
                     
         except Exception as e:
             print("couldn't save" +str(e))
-        print(amount,gateway,paykey,project,user,phone)
+        # print(amount,gateway,paykey,project,user,phone, "being saved: "+ int(Contributions_obj.invest_campaign))
 
     return render(request,'payment.html')
 
@@ -256,8 +279,32 @@ def pay(request):
 def callback(request,pk):
 
     return HttpResponse('details here')
-    
 
+
+def userrequests(request):
+    user=request.user
+    if user.is_authenticated:
+        requests = Requests.objects.filter(requester=user)
+        pending= Requests.objects.filter(requester=user, status='pending')
+        total_pending=pending.count()
+
+        complete= Requests.objects.filter(requester=user, status='used')
+        total_complete=complete.count()
+
+        context={'requests':requests,'total_pending':total_pending, 'total_complete':total_complete}
+
+    return render(request,'requests.html',context)
+
+
+def userpurchases(request):
+    user = request.user
+    if user.is_authenticated:
+        purchases=Contributions.objects.filter(contributor=user).exclude(status='pending')
+    
+        context={'purchases':purchases}
+
+        return render(request, 'userpurchases.html',context)
+    
 
 
 

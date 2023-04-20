@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-n58nov(y&jm70aa_n*5h1j#x%nqmkc@i82kbte(sq0_0+x7&d_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['fouth-year-project-production.up.railway.app']
+ALLOWED_HOSTS = ['fouth-year-project-production.up.railway.app','127.0.0.1']
 
 AUTH_USER_MODEL='coreapp.User'
 
@@ -55,7 +55,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'crowdfunding.urls'
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://fouth-year-project-production.up.railway.app",
+    "https://fouth-year-project-production.up.railway.app","http://127.0.0.1",
 ]
 
 TEMPLATES = [

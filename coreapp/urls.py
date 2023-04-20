@@ -10,7 +10,10 @@ urlpatterns=[
     path('project/<str:pk>/', views.projectdetails, name='project'),
     path('payment/<str:pk>/', views.payment, name='payment'),
     path('pay',views.pay, name='pay'),
-    path('callback/<str:pk>/',views.callback, name='callback')
+    path('callback/<str:pk>/',views.callback, name='callback'),
+    path('userrequests/',views.userrequests, name='userrequests'),
+    path('userpurchases/',views.userpurchases, name='userpurchases')
+
 
 
 

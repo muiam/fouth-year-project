@@ -1,0 +1,128 @@
+{% extends 'main.html' %}
+{% block content %}
+{%  load static %}
+
+{% if request.user.is_authenticated and request.user.type == 'investor' %}
+  {% include 'user-header.html' %}
+
+<body>
+    <style>
+        /* Set table font size and border collapse */
+    table {
+      font-family: Arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    
+    /* Set table header style */
+    th {
+      background-color: 1px solid #eb9309;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    /* Set table data style */
+    td {
+      border: 1px solid #eb9309;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    /* Set table row hover effect */
+    tr:hover {
+      background-color: 1px solid #fff;
+    }
+    
+    /* Set table responsive style */
+    @media screen and (max-width: 600px) {
+      table {
+          overflow-x: auto;
+          display: block;
+      }
+    
+      th,
+      td {
+          white-space: nowrap;
+          width: auto;
+      }
+    
+      /* Hide table header on small screens */
+      thead {
+          display: none;
+      }
+    
+      /* Display table row as a block */
+      tbody,
+      tr,
+      td {
+          display: block;
+      }
+    
+      /* Add bottom border to table row */
+      tr {
+          border-bottom: 1px solid #ddd;
+      }
+    
+      /* Add padding to table data */
+      td {
+          padding: 8px;
+          text-align: right;
+          position: relative;
+      }
+    
+      /* Add pseudo element for table data labels */
+      td::before {
+          content: attr(data-label);
+          position: absolute;
+          left: 0;
+          top: 0;
+          padding: 8px;
+          font-weight: bold;
+      }
+    }
+    </style>
+<section class="campaign-section pt-120">
+ <div class="container">  
+       <center>  <b>All my Requests</b> &nbsp;pending: {{ total_pending }} &nbsp; complete: {{total_complete}}</center>
+
+        <div style="overflow-x:auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Project</th>
+                        <th>Through</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for request in requests %}
+                    <tr>
+                        <td data-label="#">{{ forloop.counter }}</td>
+                        <td data-label="Amount">{{request.amount}}</td>
+                        {% if request.status == 'used' %}
+                        <td data-label="status">completed</td>
+                        {% else %}
+                        <td data-label="status">{{request.status}}</td>
+                        {% endif %}
+
+                        <td data-label="project">{{request.project}}</td>
+                        <td data-label="project">{{request.gateway}}</td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+ </div>
+</section>
+{% else %}  
+  <h1>You are not allowed here</h1>
+{% endif %}  
+
+{% include 'footer.html' %}
+{% endblock content %}
+
+

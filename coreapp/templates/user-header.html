@@ -1,0 +1,68 @@
+<!--Start Header-->
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+{% load static  %}
+{% if request.user.type == 'investor' %}
+    <header class="header-section">
+        <div class="header">
+            <div class="header-bottom-area">
+                <div class="container">
+                    <div class="header-menu-content">
+                        <nav class="navbar navbar-expand-lg p-0">
+                            <a class="site-logo site-title" href="index-2.html"><img src="{% static 'assets/images/logo/logo.png ' %}" alt="site-logo"></a>
+                            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="fas fa-bars"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav main-menu ms-auto me-auto">
+                                    <li><a href="{% url 'home' %}" class="active">Home</a></li>
+                                    <li><a href="{% url 'userrequests' %}">Requests</a></li>
+                                    <li><a href="{% url 'userpurchases' %}">Purchases</a></li>
+                                    <li><a href="contact.html">Withdrawals</a></li>
+                                </ul>
+                                <div class="header-action">
+                                    <a href="{% url 'logout' %}" class="btn--base">Logout</a>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+{% endif %}    
+{% if request.user.type == 'fundseeker' %}
+    <header class="header-section">
+        <div class="header">
+            <div class="header-bottom-area">
+                <div class="container">
+                    <div class="header-menu-content">
+                        <nav class="navbar navbar-expand-lg p-0">
+                            <a class="site-logo site-title" href="index-2.html"><img src="{% static 'assets/images/logo/logo.png ' %}" alt="site-logo"></a>
+                            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="fas fa-bars"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav main-menu ms-auto me-auto">
+                                    <li><a href="index-2.html" class="active">Home</a></li>
+                                    <li><a href="about.html">My project</a></li>
+                                    <li><a href="contact.html">Transactions</a></li>
+                                    <li><a href="contact.html">Dividents & interests</a></li>
+                                    
+                                </ul>
+                                <div class="header-action">
+                                    <a href="{% url 'logout' %}" class="btn--base">Logout</a>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+{% else %}
+{% endif %}
+ 
