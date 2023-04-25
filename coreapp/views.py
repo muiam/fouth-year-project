@@ -276,6 +276,8 @@ def pay(request):
                 checkoutid= code['CheckoutRequestID']
                 Contributions_obj.checkoutid=checkoutid
 
+                print(Contributions_obj.checkoutid)
+
             Contributions_obj.save()
             
                     
