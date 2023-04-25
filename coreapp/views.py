@@ -278,10 +278,10 @@ def pay(request):
 
 def callback(request): 
     #data = json.loads(request.body)
-    print(request.body)
+    data=(request.body)
 
 
-    return HttpResponse('details here')
+    return HttpResponse(data)
 
 
 def userrequests(request):
