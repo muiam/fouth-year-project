@@ -270,9 +270,9 @@ def pay(request):
                                       headers=headers, json=payload)
             print(response.text)
 
-            if(response['ResponseCode']==0):
-                #print(response['CheckoutRequestID'])
-                print("response 0")
+            code=json.loads(response.text)
+            Rescode = code['ResponseCode']
+            print(Rescode)
 
             #Contributions_obj.save()
             
