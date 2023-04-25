@@ -75,6 +75,7 @@ class Contributions(models.Model):
     expected=models.TextField(null=False,blank=False,default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     paidout = models.BooleanField(null=False, blank=False, default=False)
+    checkoutid=models.TextField(null=True, blank=True)
 
 
    

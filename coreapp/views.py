@@ -272,9 +272,11 @@ def pay(request):
 
             code=json.loads(response.text)
             Rescode = code['ResponseCode']
-            print(Rescode)
+            if(Rescode==0):
+                checkoutid= code['CheckoutRequestID']
+                Contributions_obj.checkoutid=checkoutid
 
-            #Contributions_obj.save()
+            Contributions_obj.save()
             
                     
         except Exception as e:
