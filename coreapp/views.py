@@ -18,6 +18,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 import random
 import string
+from django.views.decorators.csrf import csrf_exempt
 import base64
 from datetime import datetime
 import requests
@@ -276,6 +277,7 @@ def pay(request):
     return render(request,'payment.html')
 
 
+@csrf_exempt
 def callback(request): 
     #data = json.loads(request.body)
     data=(request.body)
