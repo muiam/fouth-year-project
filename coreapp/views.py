@@ -259,8 +259,8 @@ def pay(request):
                 "PartyA": phone, #partyA, PartyB and PhoneNumber should be in string
                 "PartyB": shortcode,
                 "PhoneNumber": phone,
-                # "InitiatorName":"testapi",
-                # "InitiatorPassword":"Safaricom999!*!",
+                "InitiatorName":"testapi",
+                "InitiatorPassword":"Safaricom999!*!",
                 "CallBackURL": 'https://fouth-year-project-production.up.railway.app/callback/',
                 "AccountReference": "CompanyXLTD",
                 "TransactionDesc": "Payment of X"
