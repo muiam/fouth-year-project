@@ -271,9 +271,10 @@ def pay(request):
             print(response.text)
 
             if(response['ResponseCode']==0):
-                print(response['CheckoutRequestID'])
+                #print(response['CheckoutRequestID'])
+                print("response 0")
 
-            Contributions_obj.save()
+            #Contributions_obj.save()
             
                     
         except Exception as e:
