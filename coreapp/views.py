@@ -266,7 +266,8 @@ def pay(request):
                 "TransactionDesc": "Payment of X"
             }
             print(payload)
-            response = requests.post('https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest', headers=headers, json=payload)
+            response = requests.post('https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest',
+                                      headers=headers, json=payload)
             print(response.text)
 
             Contributions_obj.save()
@@ -281,12 +282,11 @@ def pay(request):
 
 @csrf_exempt
 def callback(request): 
-    #data = json.loads(request.body)
-    data=(request.body)
-    print(data)
+    
+    print(request)
 
 
-    return HttpResponse(data)
+    return HttpResponse("here")
 
 
 def userrequests(request):
