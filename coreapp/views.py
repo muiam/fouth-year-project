@@ -258,7 +258,7 @@ def pay(request):
                 "PartyA": "254718369566", #partyA, PartyB and PhoneNumber should be in string
                 "PartyB": "174379",
                 "PhoneNumber": phone,
-                "CallBackURL": 'https://ngrok.com/callbackurl/'+paykey,
+                "CallBackURL": 'https://fouth-year-project-production.up.railway.app/callbackurl/',
                 "AccountReference": "CompanyXLTD",
                 "TransactionDesc": "Payment of X"
             }
@@ -276,7 +276,10 @@ def pay(request):
     return render(request,'payment.html')
 
 
-def callback(request,pk):
+def callback(request): 
+    #data = json.loads(request.body)
+    print(request.body)
+
 
     return HttpResponse('details here')
 
