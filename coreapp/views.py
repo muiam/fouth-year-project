@@ -274,7 +274,8 @@ def pay(request):
             Rescode = code['ResponseCode']
             if(Rescode==0):
                 checkoutid= code['CheckoutRequestID']
-                Contributions_obj.checkoutid=checkoutid
+            
+            Contributions_obj.checkoutid=checkoutid
 
             Contributions_obj.save()
             
