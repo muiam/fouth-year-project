@@ -281,6 +281,7 @@ def pay(request):
 def callback(request): 
     #data = json.loads(request.body)
     data=(request.body)
+    print(data)
 
 
     return HttpResponse(data)
