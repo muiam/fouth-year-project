@@ -278,7 +278,7 @@ def pay(request):
 
                 print(Contributions_obj.checkoutid)
 
-            Contributions_obj.save()
+                Contributions_obj.save()
             
                     
         except Exception as e:
