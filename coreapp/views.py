@@ -284,6 +284,7 @@ def pay(request):
 def callback(request): 
     
     print(request)
+    print(request.body)
 
 
     return HttpResponse("here")
