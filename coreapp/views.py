@@ -258,7 +258,7 @@ def pay(request):
                 "PartyA": "254718369566", #partyA, PartyB and PhoneNumber should be in string
                 "PartyB": "174379",
                 "PhoneNumber": phone,
-                "CallBackURL": 'https://fouth-year-project-production.up.railway.app/callbackurl/',
+                "CallBackURL": 'https://fouth-year-project-production.up.railway.app/callback/',
                 "AccountReference": "CompanyXLTD",
                 "TransactionDesc": "Payment of X"
             }
