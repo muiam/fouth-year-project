@@ -265,16 +265,13 @@ def pay(request):
                 "AccountReference": "CompanyXLTD",
                 "TransactionDesc": "Payment of X"
             }
-            #print(payload)
+            print(payload)
             response = requests.post('https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest',
                                       headers=headers, json=payload)
             print(response.text)
+
             if(response['ResponseCode']==0):
                 print(response['CheckoutRequestID'])
-
-
-
-            
 
             Contributions_obj.save()
             
