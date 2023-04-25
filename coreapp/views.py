@@ -256,11 +256,11 @@ def pay(request):
                 "Timestamp": formated_datetime,
                 "TransactionType": "CustomerPayBillOnline",
                 "Amount": "1",  #amount needs to be string
-                "PartyA": "600584", #partyA, PartyB and PhoneNumber should be in string
-                "PartyB": "600000",
+                "PartyA": phone, #partyA, PartyB and PhoneNumber should be in string
+                "PartyB": shortcode,
                 "PhoneNumber": phone,
-                "InitiatorName":"testapi",
-                "InitiatorPassword":"Safaricom999!*!",
+                # "InitiatorName":"testapi",
+                # "InitiatorPassword":"Safaricom999!*!",
                 "CallBackURL": 'https://fouth-year-project-production.up.railway.app/callback/',
                 "AccountReference": "CompanyXLTD",
                 "TransactionDesc": "Payment of X"
