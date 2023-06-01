@@ -1,0 +1,184 @@
+{% extends 'main.html' %}
+{% block content %}
+{%  load static %}
+
+{% if request.user.is_authenticated and request.user.type == 'fundseeker' %}
+  {% include 'user-header.html' %}
+
+<body>
+
+<section class="campaign-section pt-120">
+  <div class="container">
+    <div class="project-form" id="project-form" hidden="True">
+      <h4><center>Proceed to submit a project</center></h4>
+        <form method="POST">
+          <div class="row ml-b-20">
+            {% csrf_token %}
+            <div class="col-lg-12 form-group">
+              {{form.name.label}}
+              {{form.name}}
+            </div>
+            <div class="col-lg-12 form-group">
+              {{form.category}}
+            </div>
+            <div class="col-lg-12 form-group">
+              {{form.description.label}}
+              {{form.description}}
+            </div>
+            <div class="col-lg-12 form-group">
+              {{form.roi.label}}
+              {{form.roi}}
+            </div>
+            <div class="col-lg-12 form-group">
+              {{form.target.label}}
+              {{form.target}}
+            </div>
+            <div class="col-lg-12 form-group text-center">
+              <button type="submit" class="btn--base w-100">submit</button>
+          </div>
+          </div>
+        </form>
+    </div>
+    <div class="project-statistics" id="project-statistics">
+      <div class="row">
+        <div class="col-sm" id="progress">
+              progress
+              <br><br>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 10%; height: 20px; background-color: 
+                  #eb9309;" 
+                  aria-valuenow="{{percentage}}" aria-valuemin="0" aria-valuemax="100">{{percentage}}%</div>
+              </div>
+              <br>
+              <p id="0"></p><p id="1"></p> <p id="2"></p> <p id="3"></p>            
+          <br>
+        </div>
+        <div class="col-sm">
+         Amount received weekly 
+          <br>
+  
+          <canvas id="distributionbyprojects" height="350px%"></canvas>
+        </div>
+        <div class="col-sm">
+          Distribution by orders
+          <br>
+          <canvas id="distributionbyorders" height="350px%"></canvas>
+        </div>
+      </div>
+    </div>
+ </div>
+{% load static %}
+{% block javacript %}
+<script>
+  setInterval(function() {
+
+    $.ajax({
+        url: "{% url 'myproject' %}",
+        dataType: 'json',
+        type: 'GET',
+
+        success: function(project_data){
+          if (project_data=='0'){
+            $('#project-form').removeAttr('hidden');
+            $('#project-statistics').attr('hidden',true);
+          }else{
+
+          }
+          progress(project_data[0]['totals']);
+          orderscharts(project_data[0]['orders']);
+          projectcharts(project_data[0]['weekly']);
+          progressdetails(project_data[0]['project']);
+          
+        }
+          
+    
+      })
+     
+
+      function progress(project_data){
+        console.log(project_data.id)
+        $('.progress-bar').css('width', project_data.percentage + '%');
+        $('.progress-bar').attr('aria-valuenow', project_data.percentage);
+        $('.progress-bar').text(project_data.percentage + '%');
+        $('#1').text(project_data.total + " " +'collected');
+        $('#2').text(project_data.deficit+' '+'defict');
+        $('#3').text(project_data.totalbackers+' '+'backers');
+
+
+      }
+
+      
+      function projectcharts(project_data){
+        const ctx = document.getElementById('distributionbyprojects');
+         var barchart=new Chart(ctx ,{
+          type: 'bar',
+          data: {
+            labels: project_data.map(d => d.week),
+              datasets: [{
+                label: '# amount in KES',
+                data: project_data.map(d => d.amount),
+                backgroundColor:  'rgb(235, 147, 9)',
+                fontsize:20,
+                
+                
+              }]
+            },
+        })
+        
+
+      }
+      function progressdetails(project_data){
+        $('#0').text(project_data.name);
+
+      }
+
+      function orderscharts(project_data){
+        const ctx = document.getElementById('distributionbyorders');
+         var barchart=new Chart(ctx ,{
+          type: 'pie',
+          data: {
+            labels: ['paid','pending'],
+              datasets: [{
+                data: [project_data.paid,project_data.pending],
+                showpercentage:true,
+                borderWidth: 1,
+                backgroundColor: [
+                  'rgb(255, 99, 132)',
+                  'rgb(54, 162, 235)',
+                ],
+                fontsize:20,
+              }],
+                  datalabels: {
+                    formatter: (value, ctx) => {
+
+                      let sum = totalCount;
+                      console.log(totalCount)
+                      let percentage = (value * 100 / sum).toFixed(2) + "%";
+                      return percentage;
+
+
+                      },
+                      color: '#fff',
+                      
+                      }
+            },
+        })
+        
+
+      }
+  }, 5000)
+
+  
+</script>
+{% endblock %}
+</section>
+
+{% else %}  
+  <h1>You are not allowed here</h1>
+{% endif %}  
+
+{% include 'footer.html' %}
+{% endblock content %}
+
+</body>
+

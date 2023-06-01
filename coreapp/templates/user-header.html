@@ -19,6 +19,7 @@
                                     <li><a href="{% url 'userrequests' %}">Requests</a></li>
                                     <li><a href="{% url 'userpurchases' %}">Purchases</a></li>
                                     <li><a href="contact.html">Withdrawals</a></li>
+                                    <li><a href="{% url 'report' %}">Report</a></li>
                                 </ul>
                                 <div class="header-action">
                                     <a href="{% url 'logout' %}" class="btn--base">Logout</a>
@@ -46,10 +47,10 @@
                             </button>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav main-menu ms-auto me-auto">
-                                    <li><a href="index-2.html" class="active">Home</a></li>
-                                    <li><a href="about.html">My project</a></li>
-                                    <li><a href="contact.html">Transactions</a></li>
-                                    <li><a href="contact.html">Dividents & interests</a></li>
+                                    <li><a href="{% url 'home' %}" class="active">Home</a></li>
+                                    <li><a href="{% url 'myproject' %}">My project</a></li>
+                                    <li><a href="newproject"><i class="fa fa-plus" style= "font-size:48px;color:#eb9309;"></i></a></li>
+                                    <li><a href="{% url 'payables' %}">Dividents & interests</a></li>
                                     
                                 </ul>
                                 <div class="header-action">

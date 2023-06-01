@@ -1,7 +1,10 @@
 from django.contrib import admin
-from .models import User, Campaign,Category, Contributions,Requests
+from .models import Campaign,Category, Contributions,Requests,User
+from django import forms
 
 # Register your models here.
+
+
 
 admin.site.register(User)
 admin.site.register(Campaign)

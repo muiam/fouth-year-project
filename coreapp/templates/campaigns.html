@@ -28,13 +28,19 @@
                     <div class="campaign-content">
                         <h3 class="title"><a href="{% url 'project' campaign.id %}">{{campaign.name}}</a></h3>
                         <p>{{campaign.description|truncatewords:50}}</p>
-                        <div class="skill-bar">
+                        <!-- <div class="skill-bar">
                             <div class="progressbar" data-perc="{{campaign.total_contributions}}">
                                 <div class="bar"></div>
                                
                                 <span class="label">{{campaign.total_contributions}}</span>
                             </div>
-                        </div>
+                        </div> -->
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: {{campaign.total_contributions}}%; background-color: #eb9309;" 
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{campaign.total_contributions}}%</div>
+                            </div>
+
+                    
                         <div class="campaign-footer-area">
                             <div class="left">
                                 <span class="sub-title">Our Goal</span>

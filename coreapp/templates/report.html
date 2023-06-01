@@ -1,0 +1,167 @@
+{% extends 'main.html' %}
+{% block content %}
+{%  load static %}
+
+{% if request.user.is_authenticated and request.user.type == 'investor' %}
+  {% include 'user-header.html' %}
+
+<body>
+<section class="campaign-section pt-120">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        Investments Distribution by months
+        <br>
+        <canvas id="mymonthlyinvestments" height="350px%"></canvas>
+      </div>
+      <div class="col-sm">
+        Distribution by projects
+        <br>
+
+        <canvas id="distributionbyprojects" height="350px%"></canvas>
+      </div>
+      <div class="col-sm">
+        Distribution by orders
+        <br>
+        <canvas id="distributionbyorders" height="350px%"></canvas>
+      </div>
+    </div>
+  </div>
+    
+
+{% load static %}
+{% block javacript %}
+<script>
+  setInterval(function() {
+
+    $.ajax({
+        url: "{% url 'report' %}",
+        dataType: 'json',
+        type: 'GET',
+
+        success: function(data){
+          usermontlychart(data['data']);
+          projectcharts(data['totalsdata']);
+          orderscharts(data['ordersdata']);
+          
+        }
+          
+    
+      })
+
+      function usermontlychart(data){
+        const ctx = document.getElementById('mymonthlyinvestments');
+         var barchart=new Chart(ctx ,{
+          type: 'bar',
+          data: {
+            labels: data.map(d => d.month_name),
+              datasets: [{
+                label: 'Amount in KES',
+                data: data.map(d => d.total),
+                borderWidth: 1,
+                backgroundColor:  'rgb(235, 147, 9)',
+                fontsize:20,
+
+                
+              }]
+            }
+        })
+        
+
+      }
+
+
+      function projectcharts(data){
+        const ctx = document.getElementById('distributionbyprojects');
+         var barchart=new Chart(ctx ,{
+          type: 'pie',
+          data: {
+            labels: data.map(d => d.name),
+              datasets: [{
+                label: '# amount in KES',
+                data: data.map(d => d.total_contributions),
+                showpercentage:true,
+                borderWidth: 1,
+                backgroundColor: [
+                  'rgb(255, 99, 132)',
+                  'rgb(54, 162, 235)',
+                  'rgb(235, 147, 9)',
+                  'rgb(255, 205, 286)',
+                  'rgb(255, 99, 332)',
+                  'rgb(54, 162, 239)',
+                  'rgb(235, 147, 97)',
+                  'rgb(255, 205, 186)',
+                  'rgb(255, 99, 142)',
+                  'rgb(54, 162, 255)',
+                  'rgb(235, 147, 39)',
+                  'rgb(255, 205, 87)',
+                  'rgb(255, 99, 132)',
+                  'rgb(54, 162, 234)',
+                  'rgb(235, 147, 93)',
+                  'rgb(255, 205, 16)',
+                  'rgb(255, 99, 13)',
+                  'rgb(54, 162, 23)',
+                  'rgb(235, 147, 90)',
+                  'rgb(255, 205, 76)'
+                ],
+                fontsize:20,
+              }]
+            },
+        })
+        
+
+      }
+
+      
+      function orderscharts(data){
+        const ctx = document.getElementById('distributionbyorders');
+        const totalCount = 20;
+        console.log(data);
+         var barchart=new Chart(ctx ,{
+          type: 'pie',
+          data: {
+            labels: ['paid','pending'],
+              datasets: [{
+                data: [data.paid,data.pending],
+                showpercentage:true,
+                borderWidth: 1,
+                backgroundColor: [
+                  'rgb(255, 99, 132)',
+                  'rgb(54, 162, 235)',
+                ],
+                fontsize:20,
+              }],
+                  datalabels: {
+                    formatter: (value, ctx) => {
+
+                      let sum = totalCount;
+                      console.log(totalCount)
+                      let percentage = (value * 100 / sum).toFixed(2) + "%";
+                      return percentage;
+
+
+                      },
+                      color: '#fff',
+                      
+                      }
+            },
+        })
+        
+
+      }
+  }, 5000)
+
+  
+</script>
+{% endblock %}
+</section>
+
+{% else %}  
+  <h1>You are not allowed here</h1>
+{% endif %}  
+
+{% include 'footer.html' %}
+{% endblock content %}
+
+</body>
+

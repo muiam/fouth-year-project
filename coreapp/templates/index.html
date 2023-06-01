@@ -18,7 +18,7 @@
                         <div class="campaign-content">
                             <h3 class="title"><a >My portfolio</a></h3>
                             <div class="campaign-btn">
-                                <a  class="btn--base">KES {{total}}</a>
+                                <p  class="btn--base">KES {{total}}</p>
                             </div>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                         <div class="campaign-content">
                             <h3 class="title"><a>investments</a></h3>
                             <div class="campaign-btn">
-                                <a  class="btn--base">{{count}}</a>
+                                <p class="btn--base">{{count}}</p>
                             </div>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                         <div class="campaign-content">
                             <h3 class="title"><a>complete requests</a></h3>
                             <div class="campaign-btn">
-                                <a  class="btn--base">{{completerequests}}</a>
+                                <p  class="btn--base">{{completerequests}}</p>
                             </div>
                         </div>
                     </div>
@@ -124,13 +124,133 @@
 
 
 
-
+                   
+    
+                    {% include 'footer.html' %}
     
 
     {% endif %}
 
-    {% if user.type == "fundeseeker" %}
-    <h1>Invse</h1>
+    {% if user.type == "fundseeker" %}
+
+    <section class="campaign-section pt-120">
+        <div class="container">    
+            <div class="row justify-content-center mb-30-none">
+                
+                <div class="col-xl-4 col-lg-6 col-md-6 mb-30">
+                    <div class="campaign-item">
+                        <div class="campaign-content">
+                            <h3 class="title"><a >My project</a></h3>
+                            <div class="campaign-btn">
+                                <p  class="btn--base">KES {{amount}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-6 mb-30">
+                    <div class="campaign-item">
+                        <div class="campaign-content">
+                            <h3 class="title"><a>Total backers</a></h3>
+                            <div class="campaign-btn">
+                                <p class="btn--base">{{backers}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+                
+                <div class="col-xl-4 col-lg-6 col-md-6 mb-30">
+                    <div class="campaign-item">
+                        <div class="campaign-content">
+                            <h3 class="title"><a>complete requests</a></h3>
+                            <div class="campaign-btn">
+                                <p  class="btn--base">19</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+    </div>
+    <section>
+            <center><p>Interest payable  is calculated based on ROI declared during submission of project
+                and is remittable after end of every one (1) FY </p></center>
+
+
+                 <style>
+                    .form-container {
+                      position: fixed;
+                      bottom: 0;
+                      right: 0;
+                      margin: 20px;
+                      background-color: #f2f2f2;
+                      padding: 20px;
+                      border-radius: 5px;
+                    }
+                    
+                    .form-container form {
+                      display: flex;
+                      flex-wrap: wrap;
+                      justify-content: space-between;
+                    }
+                    
+                    .form-container input[type="text"],
+                    .form-container input[type="email"] {
+                      margin: 5px;
+                      padding: 10px;
+                      border: none;
+                      flex: 1;
+                    }
+                    
+                    .form-container input[type="submit"] {
+                      margin: 5px;
+                      padding: 10px;
+                      border: none;
+                      background-color: #eb9309;
+                      color: #fff;
+                      cursor: pointer;
+                    }
+                    
+                    /* Media Query for mobile devices */
+                    @media screen and (max-width: 600px) {
+                      .form-container {
+                        margin: 0;
+                        width: 100%;
+                        padding: 10px;
+                        box-sizing: border-box;
+                      }
+                    
+                      .form-container input[type="text"],
+                      .form-container input[type="email"] {
+                        margin: 5px 0;
+                        width: 50%;
+                        box-sizing: border-box;
+                      }
+                    
+                      .form-container input[type="submit"] {
+                        margin-top: 10px;
+                        width: 50%;
+                      }
+                    }
+                    </style>
+            
+                    
+                    <div class="form-container">
+                      <form>
+                        <input type="text" value="{{amount}}"  readonly>
+                        <input type="submit" value="withdraw">
+                      </form>
+                    </div>
+                    
+                    </body>
+                    </html>
+
+
+
+
+
+                   
+    
+                    {% include 'footer.html' %}
     {% endif %}
 
 {% else %}  
@@ -191,7 +311,7 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <section class="banner-section">
         <div class="banner-bg">
-            <img src="assets/images/banner/banner-img.png" alt="banner">
+            <img src="{% static 'assets/images/banner/invest.jpg' %}" alt="banner">
         </div>
         <div class="banner-shape">
             <img src="assets/images/map.jpg" alt="banner-shape">

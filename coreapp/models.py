@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser,Permission
 from django.contrib.auth.models import BaseUserManager
 from datetime import datetime
 
@@ -8,15 +8,12 @@ from datetime import datetime
       
 
 class User(AbstractUser):
-    firstname=models.CharField(null=True,max_length=200)
-    othername=models.CharField(null=True,max_length=200)
-    phone=models.CharField(null=True,max_length=20)
+    
     email=models.EmailField(null=True, unique=True)
-    type=models.CharField(null=True,blank=True, default="investor", max_length=20)
-    #avatar
-
+    type=models.CharField(null=True,blank=True,max_length=20)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
+
 
 
 
@@ -46,10 +43,10 @@ class Campaign(models.Model):
     #avatar
     #Youtubelink
     owner= models.OneToOneField(User,blank=True, on_delete=models.SET_NULL, null=True)
+
     #Reviews
     #Returns
-    target=models.TextField(null=True, blank=True)
-    total_contributions=models.TextField(null=True, blank=True)
+    target=models.CharField(null=True, blank=True,max_length=20)
     updated=models.DateTimeField(auto_now=True)
     created=models.DateTimeField(auto_now_add=True)
     name=models.CharField(max_length=200)
@@ -76,14 +73,6 @@ class Contributions(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     paidout = models.BooleanField(null=False, blank=False, default=False)
     checkoutid=models.TextField(null=True, blank=True)
-
-
-   
-
-    
-
-    
-
 
 
     def __str__(self):

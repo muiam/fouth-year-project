@@ -1,0 +1,9 @@
+{% autoescape off %}
+Welcome to The Online SME crowdfunding System
+
+hello {{name}}
+
+please confirm your email by clicking on this link 
+
+Confirmation link : http://{{domain}}{% url 'activate' uidb64=uid token=token %}
+{% endautoescape %}

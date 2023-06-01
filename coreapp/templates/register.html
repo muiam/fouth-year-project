@@ -1,0 +1,273 @@
+{% include 'head.html' %}
+{% load static %}
+<body>
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Start Preloader
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<div class="preloader">
+    <div class="loader">
+        <svg>
+            <defs>
+                <filter id="goo">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur" />
+                    <feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 5 -2"
+                        result="gooey" />
+                    <feComposite in="SourceGraphic" in2="gooey" operator="atop" />
+                </filter>
+            </defs>
+        </svg>
+    </div>
+</div>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    End Preloader
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Start Custom Cursor
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    End Custom Cursor
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Start Account
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<section class="account-section bg_img" data-background="{% static 'assets/images/banner/login.png' %}">
+    <!-- <div class="account-shape">
+        <img src="{% static 'assets/images/banner/bottom-shape.png' %}" alt="shape">
+    </div> -->
+    <div class="right float-end">
+        <div class="account-header text-center">
+            <a class="site-logo" href="{% url 'home' %}"><img src="{% static 'assets/images/logo/logo.png' %}" alt="logo"></a>
+        </div>
+        <div class="account-middle">
+            <div class="account-form-area">
+                <h3 class="title">Register Information</h3>
+                <p>Please input your details and register your account to get access to your dashboard.</p>
+                <form class="validate" id="validate">
+                    <div class="row ml-b-20">
+                        {% csrf_token %}
+                        <div class="col-lg-12 form-group">
+                            <input type="text" class="form-control form--control" name="email" id="email" placeholder="your email">
+                        </div>
+                        <div class="col-lg-12 form-group text-center">
+                            <button type="submit" class="btn--base w-100">check</button>
+                        </div>
+                        <div class="col-lg-12 text-center">
+                            <div class="account-item mt-10">
+                                <label>Already Have An Account? <a href="{% url 'login' %}" class="text--base">Login
+                                        Now</a></label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <form class="details" id="details" hidden ="true">
+                    <div class="row ml-b-20">
+                        {% csrf_token %}
+                        <div class="col-lg-12 form-group">
+                            {{form.email}}
+                        </div>
+                        <div class="col-lg-12 form-group">
+                            {{form.first_name}}
+                        </div>
+                        <div class="col-lg-12 form-group">
+                            {{form.last_name}}
+                        </div>
+                        <div class="col-lg-12 form-group">
+                            {{form.user_type}}
+                        </div>
+
+                        <div class="col-lg-12 form-group">
+                            {{form.password1}}
+                        </div>
+                        <div class="col-lg-12 form-group">
+                            {{form.password2}}
+                        </div>
+                        <div class="col-lg-12 form-group text-center">
+                            <button type="submit" class="btn--base w-100">Register Now</button>
+                        </div>
+                        <div class="col-lg-12 text-center">
+                            <div class="account-item mt-10">
+                                <label>Already Have An Account? <a href="{% url 'login' %}" class="text--base">Login
+                                        Now</a></label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    End Account
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<script>
+    var selectField = document.querySelector('select');
+    var label = document.createElement('label');
+    label.textContent = 'Select account type';
+    selectField.parentNode.insertBefore(label, selectField);
+    selectField.className = 'form-control';
+
+    var defaultOption = document.createElement('option');
+    defaultOption.value = ''; // Set the value for the default option
+    defaultOption.text = 'Select'; // Set the text content for the default option
+    selectField.insertBefore(defaultOption, selectField.firstChild); 
+
+    var form_fields=document.getElementsByTagName('input');
+    form_fields[3].placeholder='your email address';
+    form_fields[4].placeholder='your first name';
+    form_fields[5].placeholder='your last name';
+    form_fields[6].placeholder='enter password';
+    //form_fields[6].removeAttribute('required')
+    form_fields[7].placeholder='Re-enter password';
+
+    for (var field in form_fields){	
+		form_fields[field].className += 'form-control form--control'
+		}
+    
+    
+</script>
+<script>
+$(document).on("submit",'#validate', function (e){
+    e.preventDefault();
+    if ($('#email').val() == '') {
+
+        toastr.error("You must provide a valid email");
+        toastr.options.showMethod = 'slideDown';
+        toastr.options.closeMethod = 'slideUp';
+
+    }else{
+        $.ajax({
+            type:'POST',
+            url: '/checkmail',
+            data :{
+                username:$('#email').val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            },
+            dataType: 'json',
+
+            success: function(data){
+                if (data.is_taken){
+                    username=data['username']
+                    toastr.error("Sorry! "+username + " is already taken");
+                    toastr.options.showMethod = 'slideDown';
+                    toastr.options.closeMethod = 'slideUp';
+
+                }else{
+                    username=data['username']
+                    toastr.success("sasa "+username +" proceed to proceed to register");
+                    toastr.options.showMethod = 'slideDown';
+                    toastr.options.closeMethod = 'slideUp';
+                    $('#validate').hide();
+                    $('#details').removeAttr('hidden');
+                    $('#id_email').val(username);
+                    $('#id_email').prop('disabled', true);
+
+                }
+            }
+
+        })
+        
+    }
+})
+
+
+$(document).on("submit",'#details', function (e){
+    e.preventDefault();
+    if ($('#id_first_name').val() == '') {
+
+        toastr.error("You must provide a first name");
+        toastr.options.showMethod = 'slideDown';
+        toastr.options.closeMethod = 'slideUp';
+    }
+
+    if ($('#id_last_name').val() == '') {
+
+        toastr.error("You must provide a last name");
+        toastr.options.showMethod = 'slideDown';
+        toastr.options.closeMethod = 'slideUp';
+        }
+    
+        
+    if ($('#id_password1').val() == '') {
+
+        toastr.error("you must enter password");
+        toastr.options.showMethod = 'slideDown';
+        toastr.options.closeMethod = 'slideUp'; 
+
+    }
+    if ($('#id_password2').val() == '') {
+
+        toastr.error("Confirmation password required");
+        toastr.options.showMethod = 'slideDown';
+        toastr.options.closeMethod = 'slideUp'; 
+
+        }
+
+    if (document.querySelector('select[name="user_type"]').value==""){
+    
+        toastr.error("You must specify account type");
+        toastr.options.showMethod = 'slideDown';
+        toastr.options.closeMethod = 'slideUp';
+    }
+
+    
+    else{
+        $.ajax({
+            type:'POST',
+            url: '/registeraccount',
+            data :{
+                username:$('#id_email').val(),
+                first_name:$('#id_first_name').val(),
+                last_name:cleanInput($('#id_last_name').val()),
+                user_type:cleanInput($('#id_user_type').val()),
+                pass1:cleanInput($('#id_password1').val()),
+                pass2:cleanInput($('#id_password2').val()),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            },
+            dataType: 'json',
+
+            // beforeSend: function(xhr, settings) {
+            //     console.log('Data being sent:', settings.data);
+            // },
+
+
+            success: function(regresponse){
+                if(regresponse=='passwords do not match'){
+                    toastr.error('passwords do not match');
+                    toastr.options.showMethod = 'slideDown';
+                    toastr.options.closeMethod = 'slideUp';
+
+                }
+
+                else if(regresponse=='Account successfully registered. please check your mail and proceed to activate account'){
+                    toastr.success('Account successfully registered. please check your mail and proceed to activate account');
+                    toastr.options.showMethod = 'slideDown';
+                    toastr.options.closeMethod = 'slideUp';
+
+                }
+
+                console.log(regresponse)
+            }
+
+        })
+
+        function cleanInput(input) {
+    
+        return input.trim();
+        }
+        
+    }
+})
+
+
+
+</script>
+
+{% include 'footer.html' %}

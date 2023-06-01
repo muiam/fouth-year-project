@@ -1,0 +1,131 @@
+{% extends 'main.html' %}
+{% block content %}
+{%  load static %}
+
+{% if request.user.is_authenticated and request.user.type == 'fundseeker' %}
+  {% include 'user-header.html' %}
+
+<body>
+    <style>
+        /* Set table font size and border collapse */
+    table {
+      font-family: Arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    
+    /* Set table header style */
+    th {
+      background-color: 1px solid #eb9309;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    /* Set table data style */
+    td {
+      border: 1px solid #eb9309;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    /* Set table row hover effect */
+    tr:hover {
+      background-color: 1px solid #fff;
+    }
+    
+    /* Set table responsive style */
+    @media screen and (max-width: 600px) {
+      table {
+          overflow-x: auto;
+          display: block;
+      }
+    
+      th,
+      td {
+          white-space: nowrap;
+          width: auto;
+      }
+    
+      /* Hide table header on small screens */
+      thead {
+          display: none;
+      }
+    
+      /* Display table row as a block */
+      tbody,
+      tr,
+      td {
+          display: block;
+      }
+    
+      /* Add bottom border to table row */
+      tr {
+          border-bottom: 1px solid #ddd;
+      }
+    
+      /* Add padding to table data */
+      td {
+          padding: 8px;
+          text-align: right;
+          position: relative;
+      }
+    
+      /* Add pseudo element for table data labels */
+      td::before {
+          content: attr(data-label);
+          position: absolute;
+          left: 0;
+          top: 0;
+          padding: 8px;
+          font-weight: bold;
+      }
+    }
+    </style>
+<section class="campaign-section pt-120">
+ <div class="container">  
+       <center>  <b>All pending payments</b> </center><br>
+        <div style="overflow-x:auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>User ID</th>
+                        <th>Email</th>
+                        <th>Amount</th>
+                        <th>pay</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for purchase in purchases %}
+                    <tr>
+                        <td data-label="#">{{ forloop.counter }}</td>
+                        <td data-label="Investor ID">{{purchase.contributor.id}}</td>
+                        <td data-label="Investor email">{{purchase.contributor}}</td>
+                        <td data-label="Amount">KES {{purchase.expected}}</td>
+                       
+                        {% if not purchase.paidout %}
+                        <td data-label="pay"><button>pay</button></td>
+                        {% endif %}
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="total">Total: KES {{total}}</div>
+        </div>
+        <style>
+            .total{
+                float: right;
+            }
+        </style>
+ </div>
+</section>
+{% else %}  
+  <h1>You are not allowed here</h1>
+{% endif %}  
+
+{% include 'footer.html' %}
+{% endblock content %}
+
+

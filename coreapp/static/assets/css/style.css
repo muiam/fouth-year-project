@@ -1525,14 +1525,14 @@ label {
 /*-------------------------------------------------
     [ ## Forms ]
 */
-select {
+/* select {
   outline: none;
   cursor: pointer;
 }
 
 option {
   color: #0f1514;
-}
+} */
 
 .input-group {
   margin-bottom: 15px;
@@ -1745,7 +1745,7 @@ option {
   width: 100%;
 }
 
-.select2-selection--single {
+/* .select2-selection--single {
   width: 100%;
   height: 45px !important;
   outline: none;
@@ -1783,7 +1783,7 @@ option {
 
 .select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {
   border-color: transparent transparent #858687 transparent;
-}
+} */
 
 .submit-btn {
   padding: 12px 20px;
@@ -2512,14 +2512,14 @@ option {
   }
 }
 
-.language-select {
+/* .language-select {
   background: transparent;
   color: #ffffff;
   border: none;
   border-radius: 3px;
   font-size: 14px;
   font-weight: 500;
-}
+} */
 @media only screen and (max-width: 991px) {
   .language-select {
     margin-left: 12px;

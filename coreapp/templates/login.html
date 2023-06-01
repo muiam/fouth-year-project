@@ -39,9 +39,9 @@
     Start Account
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <section class="account-section bg_img" data-background="{% static 'assets/images/banner/login.png' %}">
-    <div class="account-shape">
+    <!-- <div class="account-shape">
         <img src="{% static 'assets/images/banner/bottom-shape.png' %}" alt="shape">
-    </div>
+    </div> -->
     <div class="right float-end">
         <div class="account-header text-center">
             <a class="site-logo" href="{% url 'home' %}"><img src="{% static 'assets/images/logo/logo.png' %}" alt="logo"></a>
@@ -70,8 +70,8 @@
 
                         <div class="col-lg-12 text-center">
                             <div class="account-item mt-10">
-                                <label>Don't Have An Account? <a href="register.html" class="text--base">Register
-                                        Now</a></label>
+                                <label>Don't Have An Account? <a href="{% url 'register' %}" class="text--base">Register
+                                    Now</a></label>
                             </div>
                         </div>
                         
@@ -79,10 +79,15 @@
                     </div>
                 </form>
                 <!--search ends-->
-                
-                <form class="account-form" id="loginForm" hidden="true">
+                    <form class="account-form" id="loginForm" hidden="true">
                     <div class="row ml-b-20">
                         {% csrf_token %}
+
+                        {% if next %}
+                        <input type="hidden" name="next" id="next" value="{{next}}">
+                        {%else%}
+                        <input type="hidden" name="next" id="next" value="">
+                        {% endif %}
                         <div class="col-lg-12 form-group">
                             <input type="text" class="form-control form--control" id="usernamelogin" name="text" placeholder="Username">
                         </div>
@@ -99,7 +104,7 @@
                         </div>
                         <div class="col-lg-12 text-center">
                             <div class="account-item mt-10">
-                                <label>Don't Have An Account? <a href="register.html" class="text--base">Register
+                                <label>Don't Have An Account? <a href="{% url 'register' %}" class="text--base">Register
                                         Now</a></label>
                             </div>
                         </div>
@@ -172,7 +177,8 @@
     username= $('#usernamelogin').val()
     password= $('#password').val()
     token=$('input[name=csrfmiddlewaretoken]').val()
-    console.log(username,password,token);
+    next=$('#next').val()
+    console.log(username,password,token,next);
 
     if ($('#password').val() == '') {
             toastr.error("Enter your password");
@@ -189,15 +195,26 @@
             data :{
                 username:$('#usernamelogin').val(),
                 password:$('#password').val(),
+                next:$('#next').val(),
                 csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
             },
             dataType: 'json',
             success: function (data) {
             if (data['success']) {
-                toastr.success("login successful");
-                toastr.options.showMethod = 'slideDown';
-                toastr.options.closeMethod = 'slideUp';
-                window.location.href = "{% url 'home' %}"
+                if(data['next']!==""){
+
+                    toastr.success("login successful");
+                    toastr.options.showMethod = 'slideDown';
+                    toastr.options.closeMethod = 'slideUp';
+                    window.location.href = data['next']
+
+                }else{
+                    toastr.success("login successful");
+                    toastr.options.showMethod = 'slideDown';
+                    toastr.options.closeMethod = 'slideUp';
+                    window.location.href = "{% url 'home' %}"
+
+                }
 
             }else{
                 toastr.error("You entered a wrong password");
