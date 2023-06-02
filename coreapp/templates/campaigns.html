@@ -7,8 +7,8 @@
         <div class="row justify-content-center">
             <div class="col-xl-12 text-center">
                 <div class="section-header">
-                    <span class="section-sub-title">Campaign</span>
-                    <h2 class="section-title">Total Active <span>Campaigns-- {{campaign_list.count}}</span></h2>
+                    <span class="section-sub-title">All opportunities</span>
+                    <h2 class="section-title">Total Active <span>Investment opportunities-- {{campaign_list.count}}</span></h2>
                 </div>
             </div>
         </div>
@@ -28,13 +28,6 @@
                     <div class="campaign-content">
                         <h3 class="title"><a href="{% url 'project' campaign.id %}">{{campaign.name}}</a></h3>
                         <p>{{campaign.description|truncatewords:50}}</p>
-                        <!-- <div class="skill-bar">
-                            <div class="progressbar" data-perc="{{campaign.total_contributions}}">
-                                <div class="bar"></div>
-                               
-                                <span class="label">{{campaign.total_contributions}}</span>
-                            </div>
-                        </div> -->
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar" style="width: {{campaign.total_contributions}}%; background-color: #eb9309;" 
                                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{campaign.total_contributions}}%</div>
